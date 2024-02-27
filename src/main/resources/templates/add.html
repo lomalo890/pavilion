@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/add.css">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="chapter">
+                <img src="res/logo.png" alt="">
+            </div>
+            <div class="chapter">
+                <a href="/pavilion">главная</a>
+            </div>
+            <div class="chapter">
+                <a href="">контакты</a>
+            </div>
+            <div class="chapter">
+                <a href="">о нас</a>
+            </div>
+            <div class="profile">
+                <div class="info">
+                    <div class="my-profile">
+                        <a href="/profile">Мой профиль</a>
+                    </div>
+                    <div class="/add">
+                        <a href="add.html">Добавить товар</a>
+                    </div>
+                </div>
+                <div class="avatar">
+                    <img src="res/olesya.jpg" alt="">
+                </div>
+            </div>
+        </div> 
+        <div class="content">
+            <div class="title">
+                <h3>Добавить товар</h3>
+            </div> 
+            <div class="add">
+                
+                <form id="form" class="form" action="/add" method="post" enctype="multipart/form-data">
+                    <div class="image">
+                        <label for="file-input">
+                            <input name="image" type="file" id="file-input" accept="image/*">
+                            <img id="preview">
+                        </label>
+                    </div>
+                    <div class="characteristics">
+                        <div class="specificator">
+                            <div class="character">Название:</div>
+                            <div class="input"><input name="name" id="name" type="text"></div>
+                        </div>
+                        <div class="specificator">
+                            <div class="character">Город:</div>
+                            <div class="input"><input name="city" id="city" type="text"></div>
+                        </div>
+                        <div class="specificator">
+                            <div class="character">Описание:</div>
+                            <div class="input"><textarea name="description" id="description" type="text"></textarea></div>
+                        </div>
+                        <div class="specificator">
+                            <div class="character">Цена:</div>
+                            <div class="input"><input name="price" id="price" type="text"></div>
+                        </div>
+                        <div class="button">
+                            <button type="submit" id="button" disabled>Добавить</button>
+                        </div>  
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="half">
+            <div class="chapter">
+                +7 (931) 325-64-13
+            </div>
+            <div class="chapter">
+                george2066@yandex.ru
+            </div>
+        </div>
+        <div class="half">
+            <div class="chapter">
+                @BAGRODIONOV
+            </div>
+        </div>
+    </div>
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function() {
+                    preview.src = reader.result;
+                    preview.style.display = "block";
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+    <script>
+        const form = document.getElementById('form');
+        const image = document.getElementById('file-input');
+        const title = document.getElementById('name');
+        const city = document.getElementById('city');
+        const description = document.getElementById('description');
+        const price = document.getElementById('price');
+        const button = document.getElementById('button');
+
+        form.addEventListener('input', function buttonActivate() {
+            if (image.files.length > 0 && title.value 
+                && city.value && description.value && price.value) {
+                button.removeAttribute('disabled');
+            } else {
+                button.setAttribute('disabled', true);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/index.css">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="chapter">
+                <img src="res/logo.png" alt="">
+            </div>
+            <div class="chapter">
+                <a href="">главная</a>
+            </div>
+            <div class="chapter">
+                <a href="">контакты</a>
+            </div>
+            <div class="chapter">
+                <a href="">о нас</a>
+            </div>
+            <div class="profile">
+                <div class="info">
+                    <div class="my-profile">
+                        <a href="/profile">Мой профиль</a>
+                    </div>
+                    <div class="add">
+                        <a href="/add">Добавить товар</a>
+                    </div>
+                </div>
+                <div class="avatar">
+                    <img src="res/olesya.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                Категории:
+                <div class="category"><a href="#">Фрукты</a></div>
+                <div class="category"><a href="#">Фрукты</a></div>
+                <div class="category"><a href="#">Фрукты</a></div>
+                <div class="category"><a href="#">Фрукты</a></div>
+                <div class="category"><a href="#">Фрукты</a></div>
+                <div class="category"><a href="#">Фрукты</a></div>
+            </div>
+            <div class="publics">
+                <div class="public" th:each="product : ${products}">
+                    <img th:src="${product.photo}" alt="">
+                    <h3 th:text="${product.title}"></h3>
+                    <p th:text="${product.price}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="half">
+            <div class="chapter">
+                +7 (931) 325-64-13
+            </div>
+            <div class="chapter">
+                george2066@yandex.ru
+            </div>
+        </div>
+        <div class="half">
+            <div class="chapter">
+                @BAGRODIONOV
+            </div>
+        </div>
+    </div>
+</body>
+</html>
